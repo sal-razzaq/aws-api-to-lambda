@@ -7,7 +7,7 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AwsApiToLambda", "AwsApiToL
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AwsApiToLambda.Tests", "AwsApiToLambda\AwsApiToLambda.Tests\AwsApiToLambda.Tests.xproj", "{077B275C-F9E0-453D-8A46-D2E69703163A}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AwsApiToLambdaLib", "..\AwsApiToLambdaLib\AwsApiToLambdaLib\AwsApiToLambdaLib\AwsApiToLambdaLib.xproj", "{2689E0BF-8D17-465D-B8D4-A3D39CC3913B}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AwsApiToLambdaLib", "..\AwsApiToLambdaLib\AwsApiToLambdaLib\AwsApiToLambdaLib.xproj", "{2689E0BF-8D17-465D-B8D4-A3D39CC3913B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
