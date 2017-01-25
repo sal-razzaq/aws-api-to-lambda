@@ -8,5 +8,11 @@ namespace AwsApiToLambda.Tests
     public class FirstObjRequest
     {
         public string Val { get; set; }
+
+        public string AppId { get; set; }
+
+        public DateTime EventTime { get; set; }
+
+        public Dictionary<string, string> json { get; set; }
     }
 }

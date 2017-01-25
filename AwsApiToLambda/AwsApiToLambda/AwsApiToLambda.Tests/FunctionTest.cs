@@ -10,6 +10,7 @@ using Amazon.Lambda.TestUtilities;
 using AwsApiToLambda;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.IO;
 
 namespace AwsApiToLambda.Tests
 {
@@ -52,15 +53,29 @@ namespace AwsApiToLambda.Tests
         }
 
         [Fact]
-        public void TestFullTest()
+        public void TestFull()
         {
-            string jsonRequest = "{\"requestObjectType\": \"AwsApiToLambda.Tests.SecondObjRequest, AwsApiToLambda.Tests\",\"body\": \"{val : 1}\"}";
+            string jsonRequest = "{\"requestType\": \"AwsApiToLambda.Tests.SecondObjRequest, AwsApiToLambda.Tests\",\"body\": \"{val : 1}\"}";
             dynamic jsonRequestObj = JObject.Parse(jsonRequest);
-            string typeString = jsonRequestObj.requestObjectType;
+            string typeString = jsonRequestObj.requestType;
             //string typeString = "AwsApiToLambda.Tests.FirstObjRequest, AwsApiToLambda.Tests";
             Type type = Type.GetType(typeString);
             //string json = "{\"val\" : 1}";
             string json = jsonRequestObj.body;
+            dynamic obj = JsonConvert.DeserializeObject(json, type);
+            object ret = Handler.Func(obj);
+        }
+
+        [Fact]
+        public void TestFullFromFile()
+        {
+            string jsonRequest = File.ReadAllText("SampleAPIGatewayData.json");
+            dynamic jsonRequestObj = JObject.Parse(jsonRequest);
+            string typeString = jsonRequestObj.requestType;
+            //string typeString = "AwsApiToLambda.Tests.FirstObjRequest, AwsApiToLambda.Tests";
+            Type type = Type.GetType(typeString);
+            //string json = "{\"val\" : 1}";
+            string json = jsonRequestObj.body.ToString();
             dynamic obj = JsonConvert.DeserializeObject(json, type);
             object ret = Handler.Func(obj);
         }

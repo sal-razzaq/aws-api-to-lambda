@@ -7,5 +7,6 @@ namespace AwsApiToLambda.Tests
 {
     public class FirstObjResponse
     {
+       
     }
 }
