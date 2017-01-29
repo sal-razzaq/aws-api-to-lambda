@@ -7,9 +7,9 @@ namespace AwsApiToLambdaLib
 {
     static public partial class Handler
     {
-        static public object Func(object req)
+        static public AwsApiToLambdaLibTestResponse Func(AwsApiToLambdaLibTestRequest req)
         {
-            return "Hello";
+            return null;
         }
 
     }

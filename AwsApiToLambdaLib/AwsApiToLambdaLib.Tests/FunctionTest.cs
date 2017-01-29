@@ -12,19 +12,31 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.IO;
 using System.Text;
+using AwsApiToLambdaLib.Tests;
 
 namespace AwsApiToLambdaLib.Tests
 {
     public class FunctionTest
     {
+        public class ApiGatewayRequest
+        {
+            public string requestType { get; set; }
+            public string body { get; set; }
+        }
+
         [Fact]
         public void TestToUpperFunction()
         {
             // Invoke the lambda function and confirm the string was upper cased.
             var function = new Function();
             var context = new TestLambdaContext();
-            string input = "{\"msg\": \"hello world\"}";
-            var response = function.FunctionHandler(input, context);
+            ApiGatewayRequest apiGatewayRequest = new ApiGatewayRequest()
+            {
+                requestType = "AwsApiToLambdaLib.Tests.GreetingRequest, AwsApiToLambdaLib.Tests",
+                body = JsonConvert.SerializeObject(new { Name = "Beavis" })
+            };
+            var apiGatewayRequestJson = JsonConvert.SerializeObject(apiGatewayRequest);
+            var response = function.FunctionHandler(apiGatewayRequestJson, context);
             //Assert.Equal("HELLO WORLD", upperCase);
         }
 

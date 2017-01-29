@@ -36,8 +36,20 @@ namespace AwsApiToLambdaLib
                     throw new Exception("requestType not specified in input.");
                 }
                 Type type = Type.GetType(typeString);
+                if (type == null)
+                {
+                    throw new Exception($"Unable to resolve requestType: {typeString}");
+                }
                 string jsonBody = inputJsonObj.body;
+                if (string.IsNullOrWhiteSpace(jsonBody))
+                {
+                    throw new Exception("request body is empty.");
+                }
                 dynamic inputObj = JsonConvert.DeserializeObject(jsonBody, type);
+                if (inputObj == null)
+                {
+                    throw new Exception("Request object deserialized from request body is null.");
+                }
                 return JsonConvert.SerializeObject(Handler.Func(inputObj));
             }
             catch (Exception ex)
