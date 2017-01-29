@@ -5,10 +5,12 @@ using System.Threading.Tasks;
 
 namespace AwsApiToLambdaLib
 {
-    public class Program
+    static public partial class Handler
     {
-        public static void Main(string[] args)
+        static public object Func(object req)
         {
+            return "Hello";
         }
+
     }
 }
