@@ -52,7 +52,7 @@ namespace AwsApiToLambdaLib
                 RequestContext requestContext = new RequestContext()
                 {
                     LambdaContext = context,
-                    ApiGatewayContext = BuilidApiGatewayContext(input)
+                    ApiGatewayInput = input
                 };
                 var result = methodInfo.Invoke(handlerClass, new object[] { requestData, requestContext });
                 return JsonConvert.SerializeObject(result);
@@ -66,17 +66,6 @@ namespace AwsApiToLambdaLib
                         StackTrace = ex.StackTrace
                     });
             }
-        }
-
-        IApiGatewayContext BuilidApiGatewayContext(ApiGatewayInput input)
-        {
-            var ctx = new ApiGatewayContext()
-            {
-               context = input.context,
-               @params = input.@params,
-               stage_variables = input.stage_variables
-            };
-            return ctx;
         }
 
 

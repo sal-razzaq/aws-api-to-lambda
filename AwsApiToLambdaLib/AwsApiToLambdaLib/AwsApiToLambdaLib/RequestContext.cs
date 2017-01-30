@@ -10,6 +10,6 @@ namespace AwsApiToLambdaLib
     {
         public ILambdaContext LambdaContext { get; set; }
 
-        public IApiGatewayContext ApiGatewayContext { get; set; }
+        public ApiGatewayInput ApiGatewayInput { get; set; }
     }
 }
