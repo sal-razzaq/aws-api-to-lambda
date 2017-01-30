@@ -42,7 +42,7 @@ namespace AwsApiToLambdaLib.Tests
         }
 
         [Fact]
-        public void FullInputTest()
+        public void FullApiGatewayInputTest()
         {
             var function = new Function();
             var context = new TestLambdaContext();
