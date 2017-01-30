@@ -8,22 +8,12 @@ namespace AwsApiToLambdaLib.Tests
 {
     public class Handler
     {
-        //public GreetingResponse Execute(GreetingRequest request)
-        public GreetingResponse Process(GreetingRequest request)
+        public GreetingResponse Process(GreetingRequest request, IRequestContext requestContext)
         {
             return new GreetingResponse()
             {
                 Greeting = "Hello " + request?.Name
             };
-        }
-
-        public GreetingResponse Process(String request)
-        {
-            //return new GreetingResponse()
-            //{
-            //    Greeting = "Hello " + request?.Name
-            //};
-            return null;
         }
     }
 }

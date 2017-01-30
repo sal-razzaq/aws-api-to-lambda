@@ -48,9 +48,13 @@ namespace AwsApiToLambdaLib
                 var methodInfo = GetMethodWithCorrectParam(classType, methodName, methodParamType);
                 if (methodInfo == null)
                 {
-                    throw new Exception($"Request Handler not found. Expected Method: {methodName} on Class: {classType} which accepts exactly one argument of Type: {methodParamType}.");
+                    throw new Exception($"Request Handler not found. Expected Method: {methodName} on Class: {classType} which accepts two arguments of Types: {methodParamType} and {typeof(IRequestContext)}.");
                 }
-                var result = methodInfo.Invoke(handlerClass, new object[] { requestData });
+                RequestContext requestContext = new RequestContext()
+                {
+                    LambdaContext = context
+                };
+                var result = methodInfo.Invoke(handlerClass, new object[] { requestData, requestContext });
                 return JsonConvert.SerializeObject(result);
             }
             catch (Exception ex)
@@ -72,10 +76,10 @@ namespace AwsApiToLambdaLib
                 if (mi.Name == methodName)
                 {
                     var methodParam = mi.GetParameters();
-                    if (methodParam.Length == 1)
+                    if (methodParam.Length == 2)
                     {
-                        var paramType = methodParam[0].ParameterType;
-                        if (paramType == methodParamType)
+                        if (methodParam[0].ParameterType == methodParamType 
+                            && methodParam[1].ParameterType == typeof(IRequestContext))
                         {
                             return mi;
                         }

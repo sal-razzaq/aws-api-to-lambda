@@ -19,7 +19,7 @@ namespace AwsApiToLambdaLib.Tests
     public class FunctionTest
     {
         [Fact]
-        public void TestToUpperFunction()
+        public void BasicTest()
         {
             var function = new Function();
             var context = new TestLambdaContext();
