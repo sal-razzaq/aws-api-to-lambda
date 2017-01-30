@@ -51,5 +51,27 @@ namespace AwsApiToLambdaLib.Tests
             var responseObj = JsonConvert.DeserializeObject<GreetingResponse>(response);
             Assert.Equal("Hello Joe", responseObj.Greeting);
         }
+
+        [Fact]
+        public void NullApiGatewayInputTest()
+        {
+            var function = new Function();
+            var context = new TestLambdaContext();
+            var response = function.FunctionHandler(null, context);
+            var responseObj = JsonConvert.DeserializeObject<GreetingResponse>(response);
+            Assert.True(responseObj.Error != null);
+        }
+
+        [Fact]
+        public void EmptyApiGatewayInputTest()
+        {
+           // TODO:
+        }
+
+        [Fact]
+        public void NoJsonBodyApiGatewayInputTest()
+        {
+            // TODO:
+        }
     }
 }

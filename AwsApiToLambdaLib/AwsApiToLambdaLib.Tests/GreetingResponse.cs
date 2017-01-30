@@ -9,6 +9,10 @@ namespace AwsApiToLambdaLib.Tests
     public class GreetingResponse
     {
         public string Greeting { get; set; }
+
+        public string Error { get; set; }
+
+        public string StackTrace { get; set; }
     }
    
 }

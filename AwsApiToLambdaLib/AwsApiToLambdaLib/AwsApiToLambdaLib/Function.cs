@@ -31,6 +31,10 @@ namespace AwsApiToLambdaLib
         {
             try
             {
+                if (input == null)
+                {
+                    throw new Exception("input is null. Did you configure the application/json mapping template under 'Integration Request'?");
+                }
                 Type classType = ResolveType(input.class_type);
                 string methodName = input.method_name;
                 Type methodParamType = ResolveType(input.method_param_type);
@@ -60,6 +64,7 @@ namespace AwsApiToLambdaLib
             }
             catch (Exception ex)
             {
+                Console.WriteLine($"{ex.Message}\n{ex.StackTrace}");
                 return JsonConvert.SerializeObject(
                     new
                     {
