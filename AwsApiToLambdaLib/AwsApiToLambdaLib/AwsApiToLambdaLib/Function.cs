@@ -26,20 +26,18 @@ namespace AwsApiToLambdaLib
         /// <param name="input"></param>
         /// <param name="context"></param>
         /// <returns></returns>
-        public String FunctionHandler(String input, ILambdaContext context)
+        public String FunctionHandler(ApiGatewayInput input, ILambdaContext context)
         {
             try
             {
-                JObject inputJsonObj = JObject.Parse(input);
-                Type classType = ResolveType(inputJsonObj, "classType");
-                string methodName = GetPropertyStringValue(inputJsonObj, "methodName");
-                Type methodParamType = ResolveType(inputJsonObj, "methodParamType");
-                string jsonBody = GetPropertyStringValue(inputJsonObj, "body");
-                if (string.IsNullOrWhiteSpace(jsonBody))
+                Type classType = ResolveType(input.class_type);
+                string methodName = input.method_name;
+                Type methodParamType = ResolveType(input.method_param_type);
+                if (string.IsNullOrWhiteSpace(input.body_json))
                 {
                     throw new Exception("request body is empty.");
                 }
-                dynamic requestData = JsonConvert.DeserializeObject(jsonBody, methodParamType);
+                dynamic requestData = JsonConvert.DeserializeObject(input.body_json, methodParamType);
                 if (requestData == null)
                 {
                     throw new Exception("Request object deserialized from request body is null.");
@@ -110,17 +108,12 @@ namespace AwsApiToLambdaLib
             return val;
         }
 
-        Type ResolveType(JObject inputJsonObj, string name)
+        Type ResolveType(string typeString)
         {
-            var typeString = GetPropertyStringValue(inputJsonObj, name);
-            if (String.IsNullOrWhiteSpace(typeString))
-            {
-                throw new Exception($"{name} not specified in input.");
-            }
             Type type = Type.GetType(typeString);
             if (type == null)
             {
-                throw new Exception($"Unable to resolve {name}: {typeString}");
+                throw new Exception($"Unable to resolve type: {typeString}");
             }
             return type;
         }

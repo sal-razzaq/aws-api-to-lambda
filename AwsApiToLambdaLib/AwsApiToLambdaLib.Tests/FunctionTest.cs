@@ -23,20 +23,20 @@ namespace AwsApiToLambdaLib.Tests
         {
             var function = new Function();
             var context = new TestLambdaContext();
-            MockApiGatewayRequest apiGatewayRequest = new MockApiGatewayRequest()
+            var apiGatewayRequest = new ApiGatewayInput()
             {
-                classType = "AwsApiToLambdaLib.Tests.Handler, AwsApiToLambdaLib.Tests",
-                methodName = "Process",
-                methodParamType = "AwsApiToLambdaLib.Tests.GreetingRequest, AwsApiToLambdaLib.Tests",
-                body = JsonConvert.SerializeObject(new { Name = "Beavis" })
+                class_type = "AwsApiToLambdaLib.Tests.Handler, AwsApiToLambdaLib.Tests",
+                method_name = "Process",
+                method_param_type = "AwsApiToLambdaLib.Tests.GreetingRequest, AwsApiToLambdaLib.Tests",
+                body_json = JsonConvert.SerializeObject(new { Name = "Beavis" })
             };
-            var response = function.FunctionHandler(JsonConvert.SerializeObject(apiGatewayRequest), context);
+            var response = function.FunctionHandler(apiGatewayRequest, context);
             var responseObj = JsonConvert.DeserializeObject<GreetingResponse>(response);
             Assert.Equal("Hello Beavis", responseObj.Greeting);
 
             // call again - this time the cached method will be used
-            apiGatewayRequest.body = JsonConvert.SerializeObject(new { Name = "Butthead" });
-            response = function.FunctionHandler(JsonConvert.SerializeObject(apiGatewayRequest), context);
+            apiGatewayRequest.body_json = JsonConvert.SerializeObject(new { Name = "Butthead" });
+            response = function.FunctionHandler(apiGatewayRequest, context);
             responseObj = JsonConvert.DeserializeObject<GreetingResponse>(response);
             Assert.Equal("Hello Butthead", responseObj.Greeting);
         }
