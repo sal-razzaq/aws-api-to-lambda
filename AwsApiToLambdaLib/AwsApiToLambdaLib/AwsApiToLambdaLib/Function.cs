@@ -33,11 +33,11 @@ namespace AwsApiToLambdaLib
                 Type classType = ResolveType(input.class_type);
                 string methodName = input.method_name;
                 Type methodParamType = ResolveType(input.method_param_type);
-                if (string.IsNullOrWhiteSpace(input.body_json))
+                if (input.body_json == null)
                 {
                     throw new Exception("request body is empty.");
                 }
-                dynamic requestData = JsonConvert.DeserializeObject(input.body_json, methodParamType);
+                dynamic requestData = input.body_json.ToObject(methodParamType);
                 if (requestData == null)
                 {
                     throw new Exception("Request object deserialized from request body is null.");
@@ -51,7 +51,8 @@ namespace AwsApiToLambdaLib
                 }
                 RequestContext requestContext = new RequestContext()
                 {
-                    LambdaContext = context
+                    LambdaContext = context,
+                    ApiGatewayContext = BuilidApiGatewayContext(input)
                 };
                 var result = methodInfo.Invoke(handlerClass, new object[] { requestData, requestContext });
                 return JsonConvert.SerializeObject(result);
@@ -66,6 +67,18 @@ namespace AwsApiToLambdaLib
                     });
             }
         }
+
+        IApiGatewayContext BuilidApiGatewayContext(ApiGatewayInput input)
+        {
+            var ctx = new ApiGatewayContext()
+            {
+               context = input.context,
+               @params = input.@params,
+               stage_variables = input.stage_variables
+            };
+            return ctx;
+        }
+
 
         ConcurrentDictionary<string, MethodInfo> _methodCache = new ConcurrentDictionary<string, MethodInfo>();
         MethodInfo GetMethodWithCorrectParam(Type classType, String methodName, Type methodParamType)

@@ -5,12 +5,10 @@ using System.Threading.Tasks;
 
 namespace AwsApiToLambdaLib
 {
-    public class Params
+    public class Params : IParams
     {
-        public Dictionary<string, string> path;
-        public Dictionary<string, string> querystring;
-        public Dictionary<string, string> header;
-        public Dictionary<string, string> stage_variables;
-        public Dictionary<string, string> context;
+        public Dictionary<string, string> path { get; set; }
+        public Dictionary<string, string> querystring { get; set; }
+        public Dictionary<string, string> header { get; set; }
     }
 }

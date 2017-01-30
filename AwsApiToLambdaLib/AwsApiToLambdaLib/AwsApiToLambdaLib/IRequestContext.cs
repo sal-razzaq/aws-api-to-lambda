@@ -11,5 +11,6 @@ namespace AwsApiToLambdaLib
         ILambdaContext LambdaContext { get; }
 
         // pass in headers from API Gateway request
+        IApiGatewayContext ApiGatewayContext { get; }
     }
 }

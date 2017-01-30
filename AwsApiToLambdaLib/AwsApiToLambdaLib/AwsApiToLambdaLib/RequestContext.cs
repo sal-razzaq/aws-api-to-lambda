@@ -9,5 +9,7 @@ namespace AwsApiToLambdaLib
     public class RequestContext : IRequestContext
     {
         public ILambdaContext LambdaContext { get; set; }
+
+        public IApiGatewayContext ApiGatewayContext { get; set; }
     }
 }
