@@ -7,8 +7,13 @@ using System.Threading.Tasks;
 
 namespace AwsApiToLambdaLib
 {
-    public class ApiGatewayInput
+    public class ApiGatewayInput : IApiGatewayInput
     {
+        public ApiGatewayInput()
+        {
+            this.@params = new Params();
+        }
+
         [JsonProperty("class-type")]
         public string class_type { get; set; }
         [JsonProperty("method-name")]
@@ -17,9 +22,9 @@ namespace AwsApiToLambdaLib
         public string method_param_type { get; set; }
         [JsonProperty("body-json")]
         public dynamic body_json { get; set; }
-        public Params @params {get; set;}
+        public IParams @params {get; set;}
         [JsonProperty("stage-variables")]
-        public Dictionary<string, string> stage_variables;
-        public Dictionary<string, string> context;
+        public Dictionary<string, string> stage_variables { get; set; }
+        public Dictionary<string, string> context { get; set; }
     }
 }

@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace AwsApiToLambdaLib
 {
-    public interface IRequestContext 
+    public interface IRequestContext
     {
         ILambdaContext LambdaContext { get; }
-
-        // pass in headers from API Gateway request
-        ApiGatewayInput ApiGatewayInput { get; }
+        IApiGatewayInput ApiGatewayInput { get; }
     }
 }

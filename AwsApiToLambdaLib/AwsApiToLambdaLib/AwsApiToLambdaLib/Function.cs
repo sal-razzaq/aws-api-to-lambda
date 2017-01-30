@@ -26,7 +26,7 @@ namespace AwsApiToLambdaLib
         /// <param name="input"></param>
         /// <param name="context"></param>
         /// <returns></returns>
-        public String FunctionHandler(ApiGatewayInput input, ILambdaContext context)
+        public String FunctionHandler(IApiGatewayInput input, ILambdaContext context)
         {
             try
             {
