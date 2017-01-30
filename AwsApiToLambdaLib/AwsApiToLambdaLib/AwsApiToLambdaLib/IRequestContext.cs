@@ -9,5 +9,7 @@ namespace AwsApiToLambdaLib
     public interface IRequestContext 
     {
         ILambdaContext LambdaContext { get; }
+
+        // pass in headers from API Gateway request
     }
 }

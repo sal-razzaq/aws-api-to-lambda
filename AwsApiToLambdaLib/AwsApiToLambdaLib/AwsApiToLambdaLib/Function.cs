@@ -10,6 +10,7 @@ using System.IO;
 using Newtonsoft.Json;
 using System.Text;
 using System.Reflection;
+using System.Collections.Concurrent;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
 [assembly: LambdaSerializerAttribute(typeof(Amazon.Lambda.Serialization.Json.JsonSerializer))]
@@ -68,8 +69,14 @@ namespace AwsApiToLambdaLib
             }
         }
 
+        ConcurrentDictionary<string, MethodInfo> _methodCache = new ConcurrentDictionary<string, MethodInfo>();
         MethodInfo GetMethodWithCorrectParam(Type classType, String methodName, Type methodParamType)
         {
+            string key = classType + ";" + methodName + ";" + methodParamType;
+            MethodInfo methodInfoLookup = null;
+            if (_methodCache.TryGetValue(key, out methodInfoLookup))
+                return methodInfoLookup;
+
             MethodInfo[] methodInfos = classType.GetMethods();
             foreach (var mi in methodInfos)
             {
@@ -81,6 +88,10 @@ namespace AwsApiToLambdaLib
                         if (methodParam[0].ParameterType == methodParamType 
                             && methodParam[1].ParameterType == typeof(IRequestContext))
                         {
+                            if (!_methodCache.TryGetValue(key, out methodInfoLookup))
+                            {
+                                _methodCache[key] = mi;
+                            }
                             return mi;
                         }
                     }
@@ -89,7 +100,6 @@ namespace AwsApiToLambdaLib
             return null;
         }
         String GetPropertyStringValue(JObject inputJsonObj, string name)
-
         {
             JToken jToken;
             string val = null;

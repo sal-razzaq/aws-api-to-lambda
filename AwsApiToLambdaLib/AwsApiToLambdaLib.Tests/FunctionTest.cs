@@ -30,10 +30,15 @@ namespace AwsApiToLambdaLib.Tests
                 methodParamType = "AwsApiToLambdaLib.Tests.GreetingRequest, AwsApiToLambdaLib.Tests",
                 body = JsonConvert.SerializeObject(new { Name = "Beavis" })
             };
-            var apiGatewayRequestJson = JsonConvert.SerializeObject(apiGatewayRequest);
-            var response = function.FunctionHandler(apiGatewayRequestJson, context);
+            var response = function.FunctionHandler(JsonConvert.SerializeObject(apiGatewayRequest), context);
             var responseObj = JsonConvert.DeserializeObject<GreetingResponse>(response);
             Assert.Equal("Hello Beavis", responseObj.Greeting);
+
+            // call again - this time the cached method will be used
+            apiGatewayRequest.body = JsonConvert.SerializeObject(new { Name = "Butthead" });
+            response = function.FunctionHandler(JsonConvert.SerializeObject(apiGatewayRequest), context);
+            responseObj = JsonConvert.DeserializeObject<GreetingResponse>(response);
+            Assert.Equal("Hello Butthead", responseObj.Greeting);
         }
     }
 }
