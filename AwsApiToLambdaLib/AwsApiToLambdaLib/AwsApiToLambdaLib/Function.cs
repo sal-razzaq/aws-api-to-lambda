@@ -20,8 +20,9 @@ namespace AwsApiToLambdaLib
     public class Function
     {
         /// <summary>
-        /// A simple function that takes a string and does a ToUpper
-        ///  if you use a Lambda function as a mobile application backend, you are invoking it synchronously. Your output data type will be serialized into JSON.
+        /// Main function that routes input to configured handlers
+        ///     This should be specified as the handler function for the Aws Lambda
+        ///     The routing information is passed from the API Gateway to this method
         /// </summary>
         /// <param name="input"></param>
         /// <param name="context"></param>
@@ -35,15 +36,13 @@ namespace AwsApiToLambdaLib
                 Type methodParamType = ResolveType(input.method_param_type);
                 if (input.body_json == null)
                 {
-                    throw new Exception("request body is empty.");
+                    throw new Exception("Request body-json is empty.");
                 }
                 dynamic requestData = input.body_json.ToObject(methodParamType);
                 if (requestData == null)
                 {
-                    throw new Exception("Request object deserialized from request body is null.");
+                    throw new Exception("Request object deserialized from request body-json is null.");
                 }
-                var handlerClass = Activator.CreateInstance(classType);
-
                 var methodInfo = GetMethodWithCorrectParam(classType, methodName, methodParamType);
                 if (methodInfo == null)
                 {
@@ -54,6 +53,8 @@ namespace AwsApiToLambdaLib
                     LambdaContext = context,
                     ApiGatewayInput = input
                 };
+
+                var handlerClass = Activator.CreateInstance(classType);
                 var result = methodInfo.Invoke(handlerClass, new object[] { requestData, requestContext });
                 return JsonConvert.SerializeObject(result);
             }
@@ -67,7 +68,6 @@ namespace AwsApiToLambdaLib
                     });
             }
         }
-
 
         ConcurrentDictionary<string, MethodInfo> _methodCache = new ConcurrentDictionary<string, MethodInfo>();
         MethodInfo GetMethodWithCorrectParam(Type classType, String methodName, Type methodParamType)
