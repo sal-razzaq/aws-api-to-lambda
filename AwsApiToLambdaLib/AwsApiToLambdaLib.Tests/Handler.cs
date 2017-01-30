@@ -4,16 +4,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AwsApiToLambdaLib
+namespace AwsApiToLambdaLib.Tests
 {
-    static public partial class Handler
+    public class Handler
     {
-        static public GreetingResponse Func(GreetingRequest request)
+        //public GreetingResponse Execute(GreetingRequest request)
+        public GreetingResponse Process(GreetingRequest request)
         {
             return new GreetingResponse()
             {
                 Greeting = "Hello " + request?.Name
             };
+        }
+
+        public GreetingResponse Process(String request)
+        {
+            //return new GreetingResponse()
+            //{
+            //    Greeting = "Hello " + request?.Name
+            //};
+            return null;
         }
     }
 }
