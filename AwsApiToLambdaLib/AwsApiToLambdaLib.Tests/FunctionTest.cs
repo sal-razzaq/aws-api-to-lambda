@@ -18,14 +18,6 @@ namespace AwsApiToLambdaLib.Tests
 {
     public class FunctionTest
     {
-        public class MockApiGatewayRequest
-        {
-            public string classType { get; set; }
-            public string methodName { get; set; }
-            public string methodParamType { get; set; }
-            public string body { get; set; }
-        }
-
         [Fact]
         public void TestToUpperFunction()
         {
