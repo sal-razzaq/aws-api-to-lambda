@@ -2,9 +2,6 @@
   "class-type": "AwsApiToLambdaLib.Tests.Handler, AwsApiToLambdaLib.Tests",
   "method-name": "Process",
   "method-param-type": "AwsApiToLambdaLib.Tests.GreetingRequest, AwsApiToLambdaLib.Tests",
-  "body-json": {
-    "Name": "Joe"
-  },
   "params": {
     "path": {},
     "querystring": {},

@@ -65,13 +65,23 @@ namespace AwsApiToLambdaLib.Tests
         [Fact]
         public void EmptyApiGatewayInputTest()
         {
-           // TODO:
+            var function = new Function();
+            var context = new TestLambdaContext();
+            var inputJson = File.ReadAllText("apigateway-input-empty.json");
+            var response = function.FunctionHandler(JsonConvert.DeserializeObject<ApiGatewayInput>(inputJson), context);
+            var responseObj = JsonConvert.DeserializeObject<GreetingResponse>(response);
+            Assert.True(responseObj.Error != null && responseObj.Error.Contains("class-type"));
         }
 
         [Fact]
         public void NoJsonBodyApiGatewayInputTest()
         {
-            // TODO:
+            var function = new Function();
+            var context = new TestLambdaContext();
+            var inputJson = File.ReadAllText("apigateway-input-no-json-body.json");
+            var response = function.FunctionHandler(JsonConvert.DeserializeObject<ApiGatewayInput>(inputJson), context);
+            var responseObj = JsonConvert.DeserializeObject<GreetingResponse>(response);
+            Assert.Equal("Hello ", responseObj.Greeting);
         }
     }
 }

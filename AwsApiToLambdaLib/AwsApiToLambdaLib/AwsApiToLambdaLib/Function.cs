@@ -33,20 +33,14 @@ namespace AwsApiToLambdaLib
             {
                 if (input == null)
                 {
-                    throw new Exception("input is null. Did you configure the application/json mapping template under 'Integration Request'?");
+                    throw new Exception("input is null." + CONFIG_MSG);
                 }
-                Type classType = ResolveType(input.class_type);
+                Type classType = ResolveType(input.class_type, "class-type");
                 string methodName = input.method_name;
-                Type methodParamType = ResolveType(input.method_param_type);
-                if (input.body_json == null)
-                {
-                    throw new Exception("Request body-json is empty.");
-                }
-                dynamic requestData = input.body_json.ToObject(methodParamType);
-                if (requestData == null)
-                {
-                    throw new Exception("Request object deserialized from request body-json is null.");
-                }
+                Type methodParamType = ResolveType(input.method_param_type, "method-param-type");
+                dynamic requestData = null;
+                if (input.body_json != null)
+                    requestData = input.body_json.ToObject(methodParamType);
                 var methodInfo = GetMethodWithCorrectParam(classType, methodName, methodParamType);
                 if (methodInfo == null)
                 {
@@ -73,7 +67,7 @@ namespace AwsApiToLambdaLib
                     });
             }
         }
-
+        const string CONFIG_MSG = "Aws API Gateway not configured. Did you configure the application/json mapping template under 'Integration Request'?";
         ConcurrentDictionary<string, MethodInfo> _methodCache = new ConcurrentDictionary<string, MethodInfo>();
         MethodInfo GetMethodWithCorrectParam(Type classType, String methodName, Type methodParamType)
         {
@@ -115,12 +109,14 @@ namespace AwsApiToLambdaLib
             return val;
         }
 
-        Type ResolveType(string typeString)
+        Type ResolveType(string typeString, string name)
         {
+            if (String.IsNullOrWhiteSpace(typeString))
+                throw new Exception($"{name} not specified in input. " + CONFIG_MSG);
             Type type = Type.GetType(typeString);
             if (type == null)
             {
-                throw new Exception($"Unable to resolve type: {typeString}");
+                throw new Exception($"{name}: Unable to resolve type: {typeString}");
             }
             return type;
         }
