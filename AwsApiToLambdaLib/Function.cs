@@ -44,7 +44,7 @@ namespace AwsApiToLambdaLib
                 var methodInfo = GetMethodWithCorrectParam(classType, methodName, methodParamType);
                 if (methodInfo == null)
                 {
-                    throw new Exception($"Request Handler not found. Expected Method: {methodName} on Class: {classType} which accepts two arguments of Types: {methodParamType} and {typeof(IRequestContext)}.");
+                    throw new Exception($"Request Handler method not found. Expected method: {methodName} on Class: {classType} which accepts two arguments of Types: {methodParamType} and {typeof(IRequestContext)}.");
                 }
                 RequestContext requestContext = new RequestContext()
                 {
