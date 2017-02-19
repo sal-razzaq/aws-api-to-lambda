@@ -1,5 +1,5 @@
 ﻿{
-  "class-type": "AwsApiToLambdaLib.Tests.Handler, AwsApiToLambdaLib.Tests",
+  "class-type": "AwsApiToLambdaLib.Tests.GreetingHandler, AwsApiToLambdaLib.Tests",
   "method-name": "Process",
   "method-param-type": "AwsApiToLambdaLib.Tests.GreetingRequest, AwsApiToLambdaLib.Tests",
   "params": {

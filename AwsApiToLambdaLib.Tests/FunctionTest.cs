@@ -25,7 +25,7 @@ namespace AwsApiToLambdaLib.Tests
             var context = new TestLambdaContext();
             var apiGatewayRequest = new ApiGatewayInput()
             {
-                class_type = "AwsApiToLambdaLib.Tests.Handler, AwsApiToLambdaLib.Tests",
+                class_type = "AwsApiToLambdaLib.Tests.GreetingHandler, AwsApiToLambdaLib.Tests",
                 method_name = "Process",
                 method_param_type = "AwsApiToLambdaLib.Tests.GreetingRequest, AwsApiToLambdaLib.Tests",
                 body_json = JObject.FromObject(new GreetingRequest { Name = "Beavis" })

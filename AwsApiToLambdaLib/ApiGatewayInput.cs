@@ -7,13 +7,16 @@ using System.Threading.Tasks;
 
 namespace AwsApiToLambdaLib
 {
+    /// <summary>
+    /// Base class with data members that accepts all data passed from the Aws Api Gateway via the mapping template specified in the "Integration Request"
+    /// </summary>
     public class ApiGatewayInput : IApiGatewayInput
     {
         public ApiGatewayInput()
         {
             this.@params = new Params();
         }
-
+        
         [JsonProperty("class-type")]
         public string class_type { get; set; }
         [JsonProperty("method-name")]

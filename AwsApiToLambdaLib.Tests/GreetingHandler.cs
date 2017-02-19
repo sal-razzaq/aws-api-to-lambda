@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AwsApiToLambdaLib.Tests
 {
-    public class Handler
+    public class GreetingHandler
     {
         public GreetingResponse Process(GreetingRequest request, IRequestContext requestContext)
         {

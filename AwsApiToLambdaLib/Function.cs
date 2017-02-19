@@ -21,12 +21,12 @@ namespace AwsApiToLambdaLib
     {
         /// <summary>
         /// Main function that routes input to configured handlers
-        ///     This should be specified as the handler function for the Aws Lambda
+        ///     This class should be specified as the handler function for the Aws Lambda
         ///     The routing information is passed from the API Gateway to this method
         /// </summary>
         /// <param name="input"></param>
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>serialized json corresponding to the object returned by the handler method</returns>
         public String FunctionHandler(IApiGatewayInput input, ILambdaContext context)
         {
             try
@@ -59,6 +59,7 @@ namespace AwsApiToLambdaLib
             catch (Exception ex)
             {
                 Console.WriteLine($"{ex.Message}\n{ex.StackTrace}");
+                // on error return an anonymous object as response with error and stacktrace information
                 return JsonConvert.SerializeObject(
                     new
                     {
@@ -67,6 +68,7 @@ namespace AwsApiToLambdaLib
                     });
             }
         }
+
         const string CONFIG_MSG = "Aws API Gateway not configured. Did you configure the application/json mapping template under 'Integration Request'?";
         ConcurrentDictionary<string, MethodInfo> _methodCache = new ConcurrentDictionary<string, MethodInfo>();
         MethodInfo GetMethodWithCorrectParam(Type classType, String methodName, Type methodParamType)

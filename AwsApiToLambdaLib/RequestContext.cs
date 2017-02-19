@@ -6,6 +6,9 @@ using Amazon.Lambda.Core;
 
 namespace AwsApiToLambdaLib
 {
+    /// <summary>
+    /// Provides context for each call from AWS API Gateway to AWS Lambda
+    /// </summary>
     public class RequestContext : IRequestContext
     {
         public ILambdaContext LambdaContext { get; set; }
