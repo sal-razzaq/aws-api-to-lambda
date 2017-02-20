@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace AwsApiToLambdaLib.Tests
 {
-    public class GreetingRequest
+    public class GreetingRequest : ApiGatewayInput
     {
         public string Name { get; set; }
     }

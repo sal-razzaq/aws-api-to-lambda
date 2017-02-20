@@ -1,17 +1,17 @@
 # aws-api-to-lambda
 
-SUMMARY
+== SUMMARY ==
 
-- A library that forwards request received by Aws Api Gateway to a specified .Net class in an Aws Lambda function for processing. 
+- A framework for forwarding request received by Aws Api Gateway to a specified .Net class in an Aws Lambda function for processing. 
 
 - This allows a single lambda function to handle different request types based on the Api Gateway endpoint configuration.
 
-- The forwarding information in provided declaratively in the AWS Api Gateway configuration.
+- The request forwarding/processing information in provided declaratively in the AWS Api Gateway configuration.
 
 - The library takes care of deserializing requests into .Net request objects for processing by the Aws lambda function request handlers.
 
 
-EXAMPLE 1 - GreetingExample
+== EXAMPLE 1 - GreetingExample ==
 
 Objective: This lambda function will receive a request from AWS API Gateway and return a greeting.
 
@@ -19,7 +19,6 @@ Objective: This lambda function will receive a request from AWS API Gateway and 
 AWS lambda | AWS lambda Project (.Net Core) | Empty function
 
 2. Add project reference to "AwsApiToLambdaLib"
-
 
 3. Edit "aws-lambda-tools-defaults.json"
 
@@ -33,7 +32,7 @@ to
 5. Create the following three classes that will handle request (request class, response class and the handler class)
 
 // GreetingRequest.cs
-public class GreetingRequest
+public class GreetingRequest : ApiGatewayInput
 {
     public string Name { get; set; }
 }
@@ -83,7 +82,6 @@ Also add AWSSDK.Core 3.3.8.1 nuget package to GreetingExample project.
 It should return the following.
 
 "{\"Greeting\":\"Hello Joe\",\"Error\":null,\"StackTrace\":null}"
-
 
 
 8. Configure API Gateway to call GreetingExample

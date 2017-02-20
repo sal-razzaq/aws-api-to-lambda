@@ -1,5 +1,6 @@
 ﻿using Amazon.Runtime;
 using AwsApiToLambdaLib;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,9 @@ namespace GreetingExample
         {
             return new GreetingResponse()
             {
-                Greeting = "Hello " + request?.Name
+                Greeting = "Hello " + request?.Name,
+                EchoGreetingRequest = request,
+                EchoCallContext = callContext
             };
         }
     }
