@@ -64,5 +64,26 @@ public class GreetingHandler
 
 6. Build and deploy GreetingExample to Aws lambda
 
+Make sure to add Amazon.Lambda.Core nuget package to GreetingExample project.
 
-7. Configure API Gateway to call GreetingExample
+Also add AWSSDK.Core 3.3.8.1 nuget package to GreetingExample project.
+
+
+7. Test the Lambda directly with following data.
+
+{
+  "class-type": "GreetingExample.GreetingHandler, GreetingExample",
+  "method-name": "Process",
+  "method-param-type": "GreetingExample.GreetingRequest, GreetingExample",
+  "body-json": {
+    "Name": "Joe"
+  }
+}
+
+It should return the following.
+
+"{\"Greeting\":\"Hello Joe\",\"Error\":null,\"StackTrace\":null}"
+
+
+
+8. Configure API Gateway to call GreetingExample

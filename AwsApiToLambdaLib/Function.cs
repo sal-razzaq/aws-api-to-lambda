@@ -27,7 +27,7 @@ namespace AwsApiToLambdaLib
         /// <param name="input"></param>
         /// <param name="context"></param>
         /// <returns>serialized json corresponding to the object returned by the handler method</returns>
-        public String FunctionHandler(IApiGatewayInput input, ILambdaContext context)
+        public String FunctionHandler(ApiGatewayInput input, ILambdaContext context)
         {
             try
             {
@@ -44,9 +44,9 @@ namespace AwsApiToLambdaLib
                 var methodInfo = GetMethodWithCorrectParam(classType, methodName, methodParamType);
                 if (methodInfo == null)
                 {
-                    throw new Exception($"Request Handler method not found. Expected method: {methodName} on Class: {classType} which accepts two arguments of Types: {methodParamType} and {typeof(IRequestContext)}.");
+                    throw new Exception($"Request Handler method not found. Expected method: {methodName} on Class: {classType} which accepts two arguments of Types: {methodParamType} and {typeof(ICallContext)}.");
                 }
-                RequestContext requestContext = new RequestContext()
+                CallContext requestContext = new CallContext()
                 {
                     LambdaContext = context,
                     ApiGatewayInput = input
@@ -87,7 +87,7 @@ namespace AwsApiToLambdaLib
                     if (methodParam.Length == 2)
                     {
                         if (methodParam[0].ParameterType == methodParamType 
-                            && methodParam[1].ParameterType == typeof(IRequestContext))
+                            && methodParam[1].ParameterType == typeof(ICallContext))
                         {
                             if (!_methodCache.TryGetValue(key, out methodInfoLookup))
                             {

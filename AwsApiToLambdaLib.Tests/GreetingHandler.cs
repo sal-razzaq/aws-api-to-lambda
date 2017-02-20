@@ -8,7 +8,7 @@ namespace AwsApiToLambdaLib.Tests
 {
     public class GreetingHandler
     {
-        public GreetingResponse Process(GreetingRequest request, IRequestContext requestContext)
+        public GreetingResponse Process(GreetingRequest request, ICallContext requestContext)
         {
             return new GreetingResponse()
             {

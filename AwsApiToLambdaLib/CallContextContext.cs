@@ -9,7 +9,7 @@ namespace AwsApiToLambdaLib
     /// <summary>
     /// Provides context for each call from AWS API Gateway to AWS Lambda
     /// </summary>
-    public class RequestContext : IRequestContext
+    public class CallContext : ICallContext
     {
         public ILambdaContext LambdaContext { get; set; }
 
