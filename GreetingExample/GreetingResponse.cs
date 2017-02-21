@@ -15,9 +15,7 @@ namespace GreetingExample
 
         public string StackTrace { get; set; }
 
-        public ICallContext EchoCallContext { get; set; }
-
-        public GreetingRequest EchoGreetingRequest { get; set; }
     }
    
 }
+    

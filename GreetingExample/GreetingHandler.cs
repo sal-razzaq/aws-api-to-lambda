@@ -10,13 +10,21 @@ namespace GreetingExample
 {
     public class GreetingHandler
     {
-        public GreetingResponse Process(GreetingRequest request, ICallContext callContext)
+        public GreetingResponse Hello(GreetingRequest request, ICallContext callContext)
         {
             return new GreetingResponse()
             {
-                Greeting = "Hello " + request?.Name,
-                EchoGreetingRequest = request,
-                EchoCallContext = callContext
+                Greeting = "Hello " + request?.Name
+            };
+        }
+
+        public GreetingResponse Bye(GreetingRequest request, ICallContext callContext)
+        {
+            string name;
+            callContext.ApiGatewayInput.@params.querystring.TryGetValue("name", out name);
+            return new GreetingResponse()
+            {
+                Greeting = "Bye " + (name != null ? name : string.Empty)
             };
         }
     }
