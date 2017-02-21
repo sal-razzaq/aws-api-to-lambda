@@ -126,4 +126,12 @@ It should return the following.
 {"Greeting":"Bye Joe","Error":null,"StackTrace":null}
 
 
+Now test "bad" input by passing in an empty request.
+
+{}
+
+It should return the following.
+
+
+
 8. Configure API Gateway to call GreetingExample's "Hello" and "Bye" methods in the lambda function.
