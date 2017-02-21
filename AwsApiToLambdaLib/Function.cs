@@ -27,7 +27,7 @@ namespace AwsApiToLambdaLib
         /// <param name="input"></param>
         /// <param name="context"></param>
         /// <returns>serialized json corresponding to the object returned by the handler method</returns>
-        public String FunctionHandler(ApiGatewayInput input, ILambdaContext context)
+        public object FunctionHandler(ApiGatewayInput input, ILambdaContext context)
         {
             try
             {
@@ -54,13 +54,14 @@ namespace AwsApiToLambdaLib
 
                 var handlerClass = Activator.CreateInstance(classType);
                 var result = methodInfo.Invoke(handlerClass, new object[] { requestData, requestContext });
-                return JsonConvert.SerializeObject(result);
+                //return JsonConvert.SerializeObject(result);
+                return result;
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"{ex.Message}\n{ex.StackTrace}");
                 // on error return an anonymous object as response with error and stacktrace information
-                return JsonConvert.SerializeObject(
+                return (
                     new
                     {
                         Error = ex.Message,

@@ -104,7 +104,7 @@ We will later POST to this method from the API Gateway.
 
 It should return the following.
 
-"{\"Greeting\":\"Hello Joe\",\"Error\":null,\"StackTrace\":null}"
+{"Greeting":"Hello Joe","Error":null,"StackTrace":null}
 
 
 Now test the "Bye" method. Note there is no "body-json" in the request.
@@ -123,7 +123,7 @@ We will later GET this method from the API Gateway.
 
 It should return the following.
 
-"{\"Greeting\":\"Bye Joe\",\"Error\":null,\"StackTrace\":null}"
+{"Greeting":"Bye Joe","Error":null,"StackTrace":null}
 
 
 8. Configure API Gateway to call GreetingExample's "Hello" and "Bye" methods in the lambda function.
