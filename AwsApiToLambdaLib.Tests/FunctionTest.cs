@@ -31,13 +31,11 @@ namespace AwsApiToLambdaLib.Tests
                 body_json = JObject.FromObject(new GreetingRequest { Name = "Beavis" })
             };
             var responseObj = (GreetingResponse) function.FunctionHandler(apiGatewayRequest, context);
-            //var responseObj = JsonConvert.DeserializeObject<GreetingResponse>(response);
             Assert.Equal("Hello Beavis", responseObj.Greeting);
 
             // call again - this time the cached method will be used
             apiGatewayRequest.body_json = JObject.FromObject(new GreetingRequest { Name = "Butthead" });
             responseObj = (GreetingResponse) function.FunctionHandler(apiGatewayRequest, context);
-            //responseObj = JsonConvert.DeserializeObject<GreetingResponse>(response);
             Assert.Equal("Hello Butthead", responseObj.Greeting);
         }
 
@@ -48,7 +46,6 @@ namespace AwsApiToLambdaLib.Tests
             var context = new TestLambdaContext();
             var inputJson = File.ReadAllText("apigateway-input.json");
             var responseObj = (GreetingResponse) function.FunctionHandler(JsonConvert.DeserializeObject<ApiGatewayInput>(inputJson), context);
-            //var responseObj = JsonConvert.DeserializeObject<GreetingResponse>(response);
             Assert.Equal("Hello Joe", responseObj.Greeting);
         }
 
@@ -57,8 +54,7 @@ namespace AwsApiToLambdaLib.Tests
         {
             var function = new Function();
             var context = new TestLambdaContext();
-            var responseObj = (GreetingResponse) function.FunctionHandler(null, context);
-            //var responseObj = JsonConvert.DeserializeObject<GreetingResponse>(response);
+            dynamic responseObj = function.FunctionHandler(null, context);
             Assert.True(responseObj.Error != null);
         }
 
@@ -68,8 +64,7 @@ namespace AwsApiToLambdaLib.Tests
             var function = new Function();
             var context = new TestLambdaContext();
             var inputJson = File.ReadAllText("apigateway-input-empty.json");
-            var responseObj = (GreetingResponse) function.FunctionHandler(JsonConvert.DeserializeObject<ApiGatewayInput>(inputJson), context);
-            //var responseObj = JsonConvert.DeserializeObject<GreetingResponse>(response);
+            dynamic responseObj = function.FunctionHandler(JsonConvert.DeserializeObject<ApiGatewayInput>(inputJson), context);
             Assert.True(responseObj.Error != null && responseObj.Error.Contains("class-type"));
         }
 
@@ -80,7 +75,6 @@ namespace AwsApiToLambdaLib.Tests
             var context = new TestLambdaContext();
             var inputJson = File.ReadAllText("apigateway-input-no-json-body.json");
             var responseObj = (GreetingResponse) function.FunctionHandler(JsonConvert.DeserializeObject<ApiGatewayInput>(inputJson), context);
-            // var responseObj = JsonConvert.DeserializeObject<GreetingResponse>(response);
             Assert.Equal("Hello ", responseObj.Greeting);
         }
     }
