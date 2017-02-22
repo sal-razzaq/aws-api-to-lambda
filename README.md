@@ -387,7 +387,7 @@ You should see the following response.
 }
 ```
 
-== SUMMARY ==
+##SUMMARY
 
 - We have exposed two endpoints in the API Gateway.
 
