@@ -197,6 +197,7 @@ Generate template: Method Request passthrough
 Replace the template with following template 
 (Note the template just adds three additional fields: class-type, method-name, method-param-type.)
 
+```
 ##  See http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-mapping-template-reference.html
 ##  This template will pass through all parameters including path, querystring, header, stage variables, and context through to the integration endpoint via the body/payload
 #set($allParams = $input.params())
@@ -244,6 +245,7 @@ Replace the template with following template
     "resource-path" : "$context.resourcePath"
     }
 }
+```
 
 Press Save button.
 
@@ -269,6 +271,7 @@ Replace the template with following template
 (Note the template just adds three additional fields: class-type, method-name, method-param-type.
 Also, it omits "body-json" since we will performing a GET operation with a querystring value.)
 
+```
 ##  See http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-mapping-template-reference.html
 ##  This template will pass through all parameters including path, querystring, header, stage variables, and context through to the integration endpoint via the body/payload
 #set($allParams = $input.params())
@@ -315,6 +318,7 @@ Also, it omits "body-json" since we will performing a GET operation with a query
     "resource-path" : "$context.resourcePath"
     }
 }
+```
 
 Press Save button.
 
