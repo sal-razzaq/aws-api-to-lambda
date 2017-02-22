@@ -7,8 +7,7 @@ web requests from the AWS API Gateway.
 
 # SOLUTION
 
-- This framework routes requests received by AWS API Gateway to a specified .Net 
-class in a single AWS Lambda function for processing.
+- This framework routes requests received by AWS API Gateway to a specified .Net class method in a single AWS Lambda function for processing.
 
 - This framework allows a single lambda function to handle different request types
 based on the API Gateway endpoint configuration.
