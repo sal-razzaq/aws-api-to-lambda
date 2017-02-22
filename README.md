@@ -1,11 +1,11 @@
 # AWS-api-to-lambda (.Net Core)
 
-== PROBLEM  ==
+# PROBLEM  
 
 - I don't want to write multiple AWS Lambda functions to handle different 
 web requests from the AWS API Gateway.
 
-== SOLUTION ==
+# SOLUTION
 
 - This framework routes requests received by AWS API Gateway to a specified .Net 
 class in a single AWS Lambda function for processing.
@@ -19,9 +19,9 @@ the AWS Api Gateway configuration using templates.
 objects for processing by the AWS lambda function request handlers.
 
 
-==== EXAMPLE - GreetingExample ====
+# EXAMPLE - GreetingExample
 
-== OBJECTIVE ==
+## OBJECTIVE
 
 - Create a single lambda function that will receive "hello" and "bye" requests from 
 the AWS API Gateway and return a greeting response.
@@ -31,7 +31,7 @@ We will POST a "name" for "Hello" and
 GET a "Bye" by passing "name" as a querystring parameter.
 
 
-== STEP 1: CREATE AWS LAMBDA FUNCTION ==
+## STEP 1: CREATE AWS LAMBDA FUNCTION
 
 1. Create a new project
 AWS lambda | AWS lambda Project (.Net Core) | Empty function
@@ -158,7 +158,7 @@ It should return the following.
 }
 
 
-== STEP 2: INTEGRATE API GATEWAY WITH THE LAMBDA FUNCTION ==
+## STEP 2: INTEGRATE API GATEWAY WITH THE LAMBDA FUNCTION
 
 Configure API Gateway to call GreetingExample's "Hello" and "Bye" methods in the lambda function.
 
