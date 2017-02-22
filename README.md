@@ -393,5 +393,6 @@ You should see the following response.
 
 - The requests received by these endpoints are handled by a single lambda function.
 
-- The request transformation and processing information is provided 
-in the "Integration Request" of the API Gateway.
+- The request transformation and processing information is provided in the "Integration Request" of the API Gateway.
+
+- We used POST (for hello) and GET (for bye).
