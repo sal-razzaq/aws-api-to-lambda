@@ -11,9 +11,9 @@ web requests from the AWS API Gateway.
 class in a single AWS Lambda function for processing.
 
 - This framework allows a single lambda function to handle different request types
-based on the Api Gateway endpoint configuration.
+based on the API Gateway endpoint configuration.
 The request forwarding/processing information in provided declaratively in 
-the AWS Api Gateway configuration using templates.
+the AWS API Gateway configuration using templates.
 
 - The framework also takes care of deserializing requests into .Net request 
 objects for processing by the AWS lambda function request handlers.
