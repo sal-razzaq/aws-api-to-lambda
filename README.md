@@ -22,11 +22,12 @@ objects for processing by the AWS lambda function request handlers.
 
 ## OBJECTIVE
 
-- Create a single lambda function that will receive "hello" and "bye" requests from 
-the AWS API Gateway and return a greeting response.
+- Create a single lambda function that will receive "hello" and "bye" requests from the AWS API Gateway and return a greeting response.
 
 - In API Gateway we will integrate with this lambda function.
+
 We will POST a "name" for "Hello" and 
+
 GET a "Bye" by passing "name" as a querystring parameter.
 
 
@@ -130,7 +131,9 @@ It should return the following.
 ```
 
 Now test the "Bye" method. Note there is no "body-json" in the request.
+
 The name is passed in the "querystring".
+
 We will later GET this method from the API Gateway.
 ```
 {
@@ -172,38 +175,53 @@ Configure API Gateway to call GreetingExample's "Hello" and "Bye" methods in the
 1) Create API
 
 API name: Greeting
+
 Description: Say hello and bye
 
 2) Create resources for "hello" and "bye" endpoints.
 
 Actions | Create Resource
+
 Resource Name: hello
+
 Press Create Resource button
 
 Go back to root of the API (click on \ in the resource tree)
+
 Actions | Create Resource
+
 Resource Name: bye
+
 Press Create Resource button
 
 3) Configure "hello" endpoint
 
 Click on "hello" in the resource tree
+
 Actions | Create Method | POST
 
 Integration type: Lambda function
+
 Choose appropriate Lambda Region
+
 Lambda Function: GreetingExample
+
 Press Save
 
 Under /hello - POST - Method Execution, click on "Integration Request"
 
 Expand "Body Mapping Templates"
+
 Click on "Add mapping template"
+
 Request body passthrough: When there are no templates defined (recommended)
+
 Content-Type: application/json
+
 Generate template: Method Request passthrough
 
 Replace the template with following template 
+
 (Note the template just adds three additional fields: class-type, method-name, method-param-type.)
 
 ```
@@ -261,23 +279,33 @@ Press Save button.
 4) Configure "bye" endpoint
 
 Click on "bye" in the resource tree
+
 Actions | Create Method | GET
 
 Integration type: Lambda function
+
 Choose appropriate Lambda Region
+
 Lambda Function: GreetingExample
+
 Press Save
 
 Under /bye - POST - Method Execution, click on "Integration Request"
 
 Expand "Body Mapping Templates"
+
 Click on "Add mapping template"
+
 Request body passthrough: When there are no templates defined (recommended)
+
 Content-Type: application/json
+
 Generate template: Method Request passthrough
 
 Replace the template with following template 
+
 (Note the template just adds three additional fields: class-type, method-name, method-param-type.
+
 Also, it omits "body-json" since we will performing a GET operation with a querystring value.)
 
 ```
@@ -338,7 +366,9 @@ Click on "Greetings" in the left-most panel
 Actions | Deploy API
 
 Deployment stage: [New Stage]
+
 Stage name: Prod
+
 Press Deploy button
 
 Press Save changes button at the top of the "Prod Stage Editor" screen.
