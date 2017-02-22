@@ -1,4 +1,4 @@
-# AWS-api-to-lambda
+# AWS-api-to-lambda (.Net Core)
 
 == PROBLEM  ==
 
