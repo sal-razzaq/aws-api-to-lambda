@@ -34,6 +34,7 @@ GET a "Bye" by passing "name" as a querystring parameter.
 ## STEP 1: CREATE AWS LAMBDA FUNCTION
 
 1) Create a new project
+
 AWS lambda | AWS lambda Project (.Net Core) | Empty function
 
 
@@ -170,6 +171,7 @@ It should return the following.
 Configure API Gateway to call GreetingExample's "Hello" and "Bye" methods in the lambda function.
 
 1) Create API
+
 API name: Greeting
 Description: Say hello and bye
 
@@ -185,6 +187,7 @@ Resource Name: bye
 Press Create Resource button
 
 3) Configure "hello" endpoint
+
 Click on "hello" in the resource tree
 Actions | Create Method | POST
 
@@ -368,6 +371,7 @@ The POST should return the following response.
   "StackTrace": null
 }
 ```
+
 7) Test "Bye" endpoint of the "Greeting" API
 ```
 GET https://xxxxxxx.execute-api.xx-xxxx-x.amazonaws.com/Prod/bye?name=Joe
