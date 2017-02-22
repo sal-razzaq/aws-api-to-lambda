@@ -94,17 +94,21 @@ Also add "AWSSDK.Core 3.3.8.1" or later nuget package to GreetingExample project
 We will later POST to this method from the API Gateway.
 
 {
-	"class-type": "GreetingExample.GreetingHandler, GreetingExample",
-	"method-name": "Hello",
-	"method-param-type": "GreetingExample.GreetingRequest, GreetingExample",
-	"body-json": {
-		"Name": "Joe"
-	}
+    "class-type": "GreetingExample.GreetingHandler, GreetingExample",
+    "method-name": "Hello",
+    "method-param-type": "GreetingExample.GreetingRequest, GreetingExample",
+    "body-json": {
+        "Name": "Joe"
+    }
 }
 
 It should return the following.
 
-{"Greeting":"Hello Joe","Error":null,"StackTrace":null}
+{
+    "Greeting" : "Hello Joe",
+    "Error"    : null,
+    "StackTrace" : null
+}
 
 
 Now test the "Bye" method. Note there is no "body-json" in the request.
@@ -112,18 +116,23 @@ The name is passed in the "querystring".
 We will later GET this method from the API Gateway.
 
 {
-	"class-type": "GreetingExample.GreetingHandler, GreetingExample",
-	"method-name": "Bye",
-	"method-param-type": "GreetingExample.GreetingRequest, GreetingExample",
-	"params" : 
-	{
-		"querystring" : {"name" : "Joe"}
-	}
+    "class-type": "GreetingExample.GreetingHandler, GreetingExample",
+    "method-name": "Bye",
+    "method-param-type": "GreetingExample.GreetingRequest, GreetingExample",
+    "params": {
+        "querystring": {
+            "name": "Joe"
+        }
+    }
 }
 
 It should return the following.
 
-{"Greeting":"Bye Joe","Error":null,"StackTrace":null}
+{
+    "Greeting" : "Bye Joe",
+    "Error"    : null,
+    "StackTrace" : null
+}
 
 
 Now test "bad" input by passing in an empty request.
@@ -132,6 +141,10 @@ Now test "bad" input by passing in an empty request.
 
 It should return the following.
 
+{
+    "Error" : "class-type not specified in input. Aws API Gateway not configured. Did you configure the application/json mapping template under 'Integration Request'?",
+    "StackTrace" : "   at AwsApiToLambdaLib.Function.ResolveType(String typeString, String name)\n   at AwsApiToLambdaLib.Function.FunctionHandler(ApiGatewayInput input, ILambdaContext context)"
+}
 
 
 8. Configure API Gateway to call GreetingExample's "Hello" and "Bye" methods in the lambda function.
