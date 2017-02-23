@@ -290,7 +290,7 @@ Lambda Function: GreetingExample
 
 Press Save
 
-Under /bye - POST - Method Execution, click on "Integration Request"
+Under /bye - GET - Method Execution, click on "Integration Request"
 
 Expand "Body Mapping Templates"
 
@@ -405,7 +405,7 @@ The POST should return the following response.
 ```
 GET https://xxxxxxx.execute-api.xx-xxxx-x.amazonaws.com/Prod/bye?name=Joe
 ```
-Simply issue the above request in any browser or use issue a GET with Fiddler, Postman or cURL. 
+Simply issue the above request in any browser or issue a GET with Fiddler, Postman or cURL. 
 
 You should see the following response.
 ```
