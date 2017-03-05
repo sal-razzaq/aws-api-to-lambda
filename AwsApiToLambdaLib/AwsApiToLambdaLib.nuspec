@@ -13,6 +13,10 @@
     <releaseNotes>Initial Nuget Release</releaseNotes>
     <copyright>Copyright 2017, Sal Razzaq</copyright>
     <tags>AWS API Gateway Lambda .NET Core Library</tags>
+    <dependencies>
+      <dependency id="Amazon.Lambda.Serialization.Json" version="1.0.1" />
+      <dependency id="Microsoft.NETCore.App" version="1.1.0" />
+    </dependencies>
   </metadata>
   <files>
     <!-- Include everything in \build -->
