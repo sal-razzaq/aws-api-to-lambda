@@ -1,4 +1,7 @@
 {
+  "title": "AwsApiToLambdaLib",
+  "copyright": "Copyright 2017, Sal Razzaq",
+  "description": "A framework for routing AWS API Gateway requests to desired .Net class methods in an AWS .Net Core Lambda Function for processing.",
   "version": "1.0.0-*",
   "buildOptions": {
   },
@@ -14,7 +17,7 @@
       "type": "build",
       "version": "1.1.0-preview1"
     },
-    "AWSSDK.Core": "3.3.8.1"
+    "AWSSDK.Core": "3.3.8.2"
   },
 
   "tools": {

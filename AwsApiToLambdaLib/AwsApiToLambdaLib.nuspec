@@ -1,17 +1,24 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>$id$</id>
-    <version>$version$</version>
-    <title>$title$</title>
-    <authors>$author$</authors>
-    <owners>$author$</owners>
+    <id>AwsApiToLambdaLib.SalRazzaq</id>
+    <version>1.0.0.0</version>
+    <title>AwsApiToLambdaLib</title>
+    <authors>Sal Razzaq</authors>
+    <owners>Sal Razzaq</owners>
     <licenseUrl>https://raw.githubusercontent.com/sal-razzaq/aws-api-to-lambda/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/sal-razzaq/aws-api-to-lambda</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>$description$</description>
-    <releaseNotes>Initial Release</releaseNotes>
+    <description>A framework for routing AWS API Gateway requests to desired .Net class methods in an AWS .Net Core Lambda Function for processing.</description>
+    <releaseNotes>Initial Nuget Release</releaseNotes>
     <copyright>Copyright 2017, Sal Razzaq</copyright>
-    <tags>AWS API Gateway Lambda .NET Core</tags>
+    <tags>AWS API Gateway Lambda .NET Core Library</tags>
   </metadata>
+  <files>
+    <!-- Include everything in \build -->
+    <file src="bin\**" target="build" />
+
+    <!-- Other files -->
+    <!-- ... -->
+  </files>
 </package>
