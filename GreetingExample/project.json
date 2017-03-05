@@ -4,10 +4,6 @@
   },
 
   "dependencies": {
-    "Microsoft.NETCore.App": {
-      "type": "platform",
-      "version": "1.0.0"
-    },
     "Amazon.Lambda.Core": "1.0.0*",
     "Amazon.Lambda.Serialization.Json": "1.0.1",
     "Amazon.Lambda.Tools": {
@@ -15,7 +11,10 @@
       "version": "1.2.1-preview1"
     },
     "AwsApiToLambdaLib": "1.0.0-*",
-    "AWSSDK.Core": "3.3.8.2"
+    "AWSSDK.Core": "3.3.8.2",
+"Microsoft.NETCore.App": {"type": "platform",
+"version": "1.1.0"
+}
   },
 
   "tools": {
