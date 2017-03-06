@@ -376,7 +376,7 @@ Copy the "Invoke URL" displayed at the top the "Prod Stage Editor" screen.
 https://xxxxxxx.execute-api.xx-xxxx-x.amazonaws.com/Prod
 ```
 
-6) Test "Hello" endpoint of the "Greeting" API
+6) Test "hello" endpoint of the "Greeting" API
 
 Using Fiddler, Postman, cURL or similar
 ```
@@ -398,7 +398,7 @@ The POST should return the following response.
 }
 ```
 
-7) Test "Bye" endpoint of the "Greeting" API
+7) Test "bye" endpoint of the "Greeting" API
 ```
 GET https://xxxxxxx.execute-api.xx-xxxx-x.amazonaws.com/Prod/bye?name=Joe
 ```
