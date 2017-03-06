@@ -15,5 +15,5 @@
   "function-runtime": "dotnetcore1.0",
   "function-memory-size": 256,
   "function-timeout": 30,
-  "function-handler": "AwsApiToLambdaLib::AwsApiToLambdaLib.Function::FunctionHandler"
+  "function-handler": "GreetingExample::GreetingExample.Function::FunctionHandler"
 }

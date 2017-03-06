@@ -17,7 +17,7 @@ using System.Collections.Concurrent;
 
 namespace AwsApiToLambdaLib
 {
-    public class Function
+    public class AwsApiToLambdaLibFunction
     {
         /// <summary>
         /// Main function that routes input to configured handlers

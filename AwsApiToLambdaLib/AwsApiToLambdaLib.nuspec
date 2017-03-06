@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>AwsApiToLambdaLib.SalRazzaq</id>
-    <version>1.0.0.0</version>
+    <version>1.0.0.4</version>
     <title>AwsApiToLambdaLib</title>
     <authors>Sal Razzaq</authors>
     <owners>Sal Razzaq</owners>
@@ -19,10 +19,6 @@
     </dependencies>
   </metadata>
   <files>
-    <!-- Include everything in \build -->
-    <file src="bin\**" target="build" />
-
-    <!-- Other files -->
-    <!-- ... -->
+    <file src="bin\release\netcoreapp1.0\*.dll" target="lib\netcoreapp1.0" />
   </files>
 </package>

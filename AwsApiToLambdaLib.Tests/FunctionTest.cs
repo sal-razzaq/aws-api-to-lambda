@@ -21,7 +21,7 @@ namespace AwsApiToLambdaLib.Tests
         [Fact]
         public void BasicTest()
         {
-            var function = new Function();
+            var function = new AwsApiToLambdaLibFunction();
             var context = new TestLambdaContext();
             var apiGatewayRequest = new ApiGatewayInput()
             {
@@ -42,7 +42,7 @@ namespace AwsApiToLambdaLib.Tests
         [Fact]
         public void FullApiGatewayInputTest()
         {
-            var function = new Function();
+            var function = new AwsApiToLambdaLibFunction();
             var context = new TestLambdaContext();
             var inputJson = File.ReadAllText("apigateway-input.json");
             var responseObj = (GreetingResponse) function.FunctionHandler(JsonConvert.DeserializeObject<ApiGatewayInput>(inputJson), context);
@@ -52,7 +52,7 @@ namespace AwsApiToLambdaLib.Tests
         [Fact]
         public void NullApiGatewayInputTest()
         {
-            var function = new Function();
+            var function = new AwsApiToLambdaLibFunction();
             var context = new TestLambdaContext();
             dynamic responseObj = function.FunctionHandler(null, context);
             Assert.True(responseObj.Error != null);
@@ -61,7 +61,7 @@ namespace AwsApiToLambdaLib.Tests
         [Fact]
         public void EmptyApiGatewayInputTest()
         {
-            var function = new Function();
+            var function = new AwsApiToLambdaLibFunction();
             var context = new TestLambdaContext();
             var inputJson = File.ReadAllText("apigateway-input-empty.json");
             dynamic responseObj = function.FunctionHandler(JsonConvert.DeserializeObject<ApiGatewayInput>(inputJson), context);
@@ -71,7 +71,7 @@ namespace AwsApiToLambdaLib.Tests
         [Fact]
         public void NoJsonBodyApiGatewayInputTest()
         {
-            var function = new Function();
+            var function = new AwsApiToLambdaLibFunction();
             var context = new TestLambdaContext();
             var inputJson = File.ReadAllText("apigateway-input-no-json-body.json");
             var responseObj = (GreetingResponse) function.FunctionHandler(JsonConvert.DeserializeObject<ApiGatewayInput>(inputJson), context);

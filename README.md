@@ -41,21 +41,18 @@ AWS lambda | AWS lambda Project (.Net Core) | Empty function
 2) Add project reference to "AWSApiToLambdaLib"
 
 
-3) Edit "AWS-lambda-tools-defaults.json"
 
-Change 
-```
-"function-handler" : "GreetingExample::GreetingExample.Function::FunctionHandler"
-```
-to
-```
-"function-handler" : "AWSApiToLambdaLib::AWSApiToLambdaLib.Function::FunctionHandler"
-```
+3) Modify "Function.cs" file in GreetingExample Project as follows.
 
-4) Delete "Function.cs" file from GreetingExample Project
+```
+public class Function : AwsApiToLambdaLibFunction
+{
+
+}
+```
 
 
-5) Create the following three classes that will handle the request (request class, response class and a  request handler class)
+4) Create the following three classes that will handle the request (request class, response class and a  request handler class)
 
 ```
 // GreetingRequest.cs
@@ -101,14 +98,14 @@ public class GreetingHandler
 }
 ```
 
-6) Build and deploy GreetingExample to AWS lambda
+5) Build and deploy GreetingExample to AWS lambda
 
 Make sure to add "Amazon.Lambda.Core" nuget package to GreetingExample project.
 
 Also, add "AWSSDK.Core 3.3.8.1" or later nuget package to GreetingExample project.
 
 
-7) Test the Lambda directly with the following request to the "Hello" method. 
+6) Test the Lambda directly with the following request to the "Hello" method. 
 We will later POST to this method from the API Gateway.
 ```
 {

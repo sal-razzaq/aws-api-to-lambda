@@ -12,9 +12,10 @@
     },
     "AwsApiToLambdaLib": "1.0.0-*",
     "AWSSDK.Core": "3.3.8.2",
-"Microsoft.NETCore.App": {"type": "platform",
-"version": "1.1.0"
-}
+    "Microsoft.NETCore.App": {
+      "type": "platform",
+      "version": "1.1.0"
+    }
   },
 
   "tools": {
